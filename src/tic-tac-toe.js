@@ -19,44 +19,75 @@ class TicTacToe {
 	isFinished() {}
 
 	getWinner() {
-		// var i,w,q,count,Draw;
-		// var symbol=['x','o'];
+		var w,q,countX,countO,countNull;
 
-		// i=2;
-		// while(i--) {
-		// 	Draw=0;
-		// 	q=3;
-		// 	while(q--) {
-		// 		w=3;
-		// 		count=0;
-		// 		while(w--) {
-		// 			if (this.matrix[q][w] === symbol[i]) count++;
-		// 		}
-		// 		if (count>2) return symbol[i];
-		// 	}
+		q=3;
+		while(q--) {
+			w=3;
+			countX=0;
+			countO=0;
+			countNull=0;
+			while(w--) {
+				if (this.matrix[q][w] === 'o') countO++;
+				if (this.matrix[q][w] === 'x') countX++;
+				if (this.matrix[q][w] === null) countNull++;
+			}
+			if (countX === 3) return 'x';
+			if (countO === 3) return 'o';
+		}
 
-		// 	q=3;
-		// 	while(q--) {
-		// 		w=3;
-		// 		count=0;
-		// 		while(w--) {
-		// 			if (this.matrix[w][q] === symbol[i]) count++;
-		// 		}
-		// 		if (count>2) return symbol[i];
-		// 	}
+		q=3;
+		while(q--) {
+			w=3;
+			countX=0;
+			countO=0;
+			countNull=0;
+			while(w--) {
+				if (this.matrix[w][q] === 'o') countO++;
+				if (this.matrix[w][q] === 'x') countX++;
+				if (this.matrix[w][q] === null) countNull++;
+			}
+			if (countX === 3) return 'x';
+			if (countO === 3) return 'o';
+		}
 
-		// 	count=0
-		// 	if (this.matrix[0][0] === symbol[i]) count++;
-		// 	if (this.matrix[1][1] === symbol[i]) count++;
-		// 	if (this.matrix[2][1] === symbol[i]) count++;	
-		// 	if (count>2) return symbol[i];
+		countX=0;
+		countO=0;
+		countNull=0;
+		if (this.matrix[0][0] === 'x') countX++;
+		if (this.matrix[1][1] === 'x') countX++;
+		if (this.matrix[2][2] === 'x') countX++;	
 
-		// 	if (this.matrix[0][2] === symbol[i]) count++;
-		// 	if (this.matrix[1][1] === symbol[i]) count++;
-		// 	if (this.matrix[2][0] === symbol[i]) count++;	
-		// 	if (count>2) return symbol[i];
-		// }
-		// return null;
+		if (this.matrix[0][0] === 'o') countO++;
+		if (this.matrix[1][1] === 'o') countO++;
+		if (this.matrix[2][2] === 'o') countO++;
+
+		if (this.matrix[0][0] === null) countNull++;
+		if (this.matrix[1][1] === null) countNull++;
+		if (this.matrix[2][2] === null) countNull++;
+		
+		if (countX === 3) return 'x';
+		if (countO === 3) return 'o';
+
+		countX=0;
+		countO=0;
+		countNull=0;
+		if (this.matrix[0][2] === 'x') countX++;
+		if (this.matrix[1][1] === 'x') countX++;
+		if (this.matrix[2][0] === 'x') countX++;	
+
+		if (this.matrix[0][2] === 'o') countO++;
+		if (this.matrix[1][1] === 'o') countO++;
+		if (this.matrix[2][0] === 'o') countO++;
+
+		if (this.matrix[0][2] === null) countNull++;
+		if (this.matrix[1][1] === null) countNull++;
+		if (this.matrix[2][0] === null) countNull++;
+		
+		if (countX === 3) return 'x';
+		if (countO === 3) return 'o';
+
+		return null;
 	}
 
 	noMoreTurns() {
