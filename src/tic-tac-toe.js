@@ -16,7 +16,14 @@ class TicTacToe {
 		}
 	}
 
-	isFinished() {}
+	isFinished() {
+		var winner = this.getWinner();
+		var draw = this.isDraw();
+
+
+		if (winner === null && draw === false) 	return false;
+		else return true;
+	}
 
 	getWinner() {
 		var w,q,countX,countO,countNull;
@@ -54,6 +61,7 @@ class TicTacToe {
 		countX=0;
 		countO=0;
 		countNull=0;
+
 		if (this.matrix[0][0] === 'x') countX++;
 		if (this.matrix[1][1] === 'x') countX++;
 		if (this.matrix[2][2] === 'x') countX++;	
@@ -102,7 +110,73 @@ class TicTacToe {
 	}
 
 	isDraw() {
+		var w,q,countX,countO,countNull,draw=0;
+
+		q=3;
+		while(q--) {
+			w=3;
+			countX=0;
+			countO=0;
+			countNull=0;
+			while(w--) {
+				if (this.matrix[q][w] === 'o') countO++;
+				if (this.matrix[q][w] === 'x') countX++;
+				if (this.matrix[q][w] === null) countNull++;
+			}
+			if (countX>0 && countO>0 && countNull === 0) draw++;
+		}
+
+		q=3;
+		while(q--) {
+			w=3;
+			countX=0;
+			countO=0;
+			countNull=0;
+			while(w--) {
+				if (this.matrix[w][q] === 'o') countO++;
+				if (this.matrix[w][q] === 'x') countX++;
+				if (this.matrix[w][q] === null) countNull++;
+			}
+			if (countX>0 && countO>0 && countNull === 0) draw++;
+		}
+
+		countX=0;
+		countO=0;
+		countNull=0;
+
+		if (this.matrix[0][0] === 'x') countX++;
+		if (this.matrix[1][1] === 'x') countX++;
+		if (this.matrix[2][2] === 'x') countX++;	
+
+		if (this.matrix[0][0] === 'o') countO++;
+		if (this.matrix[1][1] === 'o') countO++;
+		if (this.matrix[2][2] === 'o') countO++;
+
+		if (this.matrix[0][0] === null) countNull++;
+		if (this.matrix[1][1] === null) countNull++;
+		if (this.matrix[2][2] === null) countNull++;
 		
+		if (countX>0 && countO>0 && countNull === 0) draw++;
+
+		countX=0;
+		countO=0;
+		countNull=0;
+		if (this.matrix[0][2] === 'x') countX++;
+		if (this.matrix[1][1] === 'x') countX++;
+		if (this.matrix[2][0] === 'x') countX++;	
+
+		if (this.matrix[0][2] === 'o') countO++;
+		if (this.matrix[1][1] === 'o') countO++;
+		if (this.matrix[2][0] === 'o') countO++;
+
+		if (this.matrix[0][2] === null) countNull++;
+		if (this.matrix[1][1] === null) countNull++;
+		if (this.matrix[2][0] === null) countNull++;
+		
+		if (countX>0 && countO>0 && countNull === 0) draw++;
+
+		if (draw === 8) return true;
+		else return false;
 	}
 
 	getFieldValue(rowIndex, colIndex) {
