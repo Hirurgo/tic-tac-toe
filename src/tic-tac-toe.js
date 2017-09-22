@@ -19,5 +19,5 @@ module.exports = class TicTacToe {
         player = player == 'x' ? 'o' : 'x'
     	}
     }
-	}
+  }
 }
